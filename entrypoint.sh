@@ -11,18 +11,19 @@ Open sourced by
 ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝
 \033[0m'
 
-TRIGGER_ACTION="closed"
+#TRIGGER_ACTION="closed"
 
 echo "Getting Action Information"
-ACTION=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["action"]' | cut -f2 | sed 's/\"//g')
-GH_EVENT_MILESTONE_NUMBER=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["milestone","number"]' | cut -f2)
-REPOSITORY_NAME=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["repository","name"]' | cut -f2 | sed 's/\"//g')
-OWNER_ID=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["repository","owner","login"]' | cut -f2 | sed 's/\"//g')
-GH_USERNAME=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["sender","login"]' | cut -f2 | sed 's/\"//g')
-PROVIDED_MILESTONE_ID=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["inputs","milestoneId"]' | cut -f2 | sed 's/\"//g')
+#ACTION=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["action"]' | cut -f2 | sed 's/\"//g')
+#GH_EVENT_MILESTONE_NUMBER=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["milestone","number"]' | cut -f2)
+#REPOSITORY_NAME=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["repository","name"]' | cut -f2 | sed 's/\"//g')
+#OWNER_ID=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["repository","owner","login"]' | cut -f2 | sed 's/\"//g')
+#GH_USERNAME=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["sender","login"]' | cut -f2 | sed 's/\"//g')
+#PROVIDED_MILESTONE_ID=$(/JSON.sh < "${GITHUB_EVENT_PATH}" | grep '\["inputs","milestoneId"]' | cut -f2 | sed 's/\"//g')
 
-MILESTONE_ID_TO_USE=${MILESTONE_NUMBER:-$PROVIDED_MILESTONE_ID}
-MILESTONE_ID_TO_USE=${MILESTONE_ID_TO_USE:-$GH_EVENT_MILESTONE_NUMBER}
+#MILESTONE_ID_TO_USE=${MILESTONE_NUMBER:-$PROVIDED_MILESTONE_ID}
+#MILESTONE_ID_TO_USE=${MILESTONE_ID_TO_USE:-$GH_EVENT_MILESTONE_NUMBER}
+MILESTONE_ID_TO_USE=1
 echo "Action running with milestone $MILESTONE_ID_TO_USE on event $GITHUB_EVENT_NAME and action $ACTION"
 
 #Check if Milestone exists, which means actions was raised by a milestone operation.
